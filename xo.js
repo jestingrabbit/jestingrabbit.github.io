@@ -431,9 +431,7 @@ page.setSymbolDisplay = function () {
   } else {
     $('.red>.symbol').html(page.symbolSpan('o'));
     $('.green>.symbol').html(page.symbolSpan('x'));
-
   }
-
 }
 
 page.tellTurn = function () { // in 1. after every turn, more or less.
@@ -533,6 +531,9 @@ page.clearPage = function () { // begin 3.
         $(this).text('random');
         game.state[colorPlays].agent = agent.random;
       } else if ($(this).text().trim() === "random") {
+        $(this).text('good');
+        game.state[colorPlays].agent = agent.good;
+      } else if ($(this).text().trim() === "good") {
         $(this).text('perfect');
         game.state[colorPlays].agent = agent.perfect;
       } else {
