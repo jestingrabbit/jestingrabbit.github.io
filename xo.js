@@ -12,6 +12,11 @@
 //        -set delay 0 when doing this.
 //     - write decent ai
 
+var getRandomEntry = function (array) { // good to have it in one place.
+  //apparently bad to have it on the Array.prototype
+  return array[Math.floor(Math.random()*array.length)];
+}
+
 // game = {
 //   state : {
 //     board
@@ -186,13 +191,15 @@ var makeGame = function (state) {
     game.state.changePlayer();
     var symbol = game.state.isTurn;
     if (game.state[symbol].agent){ // if it exists, do the agent turn automatically.
+      $cells.off();
       move = game.state[symbol].agent.move(game.state);
       setTimeout( function () {
+        page.$cells
+          .on('click', page.cellMakeMove);
         game.takeTurn.apply(null, move)
       }, game.state[symbol].agent.delay);
     } else {
       page.tellTurn(symbol);
-    }
   };
   game.victory = function (symbol) { // TODO enhance
     messagePara = $('<p>')
@@ -273,7 +280,7 @@ agent = { // a place for bots who take in state, and spit out move
   random : {
     move : function (state) {
       var avail = agent.utilities.availableSpaces(state);
-      var i = avail[Math.floor(Math.random()*avail.length)];
+      var i = getRandomEntry(avail);
       return ['spicy', i];
     },
     update: function () {},
@@ -321,7 +328,7 @@ agent = { // a place for bots who take in state, and spit out move
       var center = 0;
       if (moves.length === 0) {
         if ((symbol === 'x') || (state.x.moves[0] === 0)) {
-          return ['spicy', corners[Math.floor(Math.random()*4)]];
+          return ['spicy', getRandomEntry(corners)];
         } else {
           return ['spicy', 0];
         }
@@ -346,14 +353,19 @@ agent = { // a place for bots who take in state, and spit out move
       }
       var otherForks = agent.utilities.forkMove(state, otherSymbol)[0];
       if (otherForks.length > 0) { //crikey, they can fork me.
+        goodThreats = [];
         for (var i = 0; i < threats.length; i++) {
           var threat = threats[i][0];
           var threatens = threats[i][1];
           if (otherForks.indexOf(threatens) === -1){
-            return ['spicy', threat]; // make a threat
+            goodThreats.push(threat);
           }
         }
-        return ['spicy', otherForks[0]]; // avoid a fork
+        if (goodThreats.length > 0){
+          return ['spicy', getRandomEntry(goodThreats)]; // make a threat
+        } else {
+          return ['spicy', otherForks[0]]; // directly block a fork
+        }
       }
 
       if (!state.isOccupied(4)) { // takes vanilla input
@@ -501,7 +513,7 @@ page.clearPage = function () { // begin 3.
 
   $('.message')
     .html('')
-    .toggle(500);
+    .toggle();
   $('.next')
     .html('')
     .append('<p>')
@@ -514,7 +526,7 @@ page.clearPage = function () { // begin 3.
       game.state.setColors();
       page.resetPlayingArea();
       $('.message')
-        .toggle(500);
+        .toggle();
       game.state.isTurn = 'o';
       game.prepNextMove();
     });
