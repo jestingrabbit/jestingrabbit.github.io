@@ -178,7 +178,7 @@ var makeGame = function (state) {
       return 'playOn';
     }
     page.displayMove('spicy', i);
-    simpleState = game.state.updateState(i,v);
+    var simpleState = game.state.updateState(i,v);
     if (simpleState === 'victory') {
       game.victory(game.state.isTurn);
     } else if (simpleState === 'tied') {
@@ -192,7 +192,7 @@ var makeGame = function (state) {
     var symbol = game.state.isTurn;
     if (game.state[symbol].agent){ // if it exists, do the agent turn automatically.
       page.$cells.off();
-      move = game.state[symbol].agent.move(game.state);
+      var move = game.state[symbol].agent.move(game.state);
       setTimeout( function () {
         page.$cells
           .on('click', page.cellMakeMove);
@@ -354,7 +354,7 @@ agent = { // a place for bots who take in state, and spit out move
       }
       var otherForks = agent.utilities.forkMove(state, otherSymbol)[0];
       if (otherForks.length > 0) { //crikey, they can fork me.
-        goodThreats = [];
+        var goodThreats = [];
         for (var i = 0; i < threats.length; i++) {
           var threat = threats[i][0];
           var threatens = threats[i][1];
@@ -447,7 +447,7 @@ page.setSymbolDisplay = function () {
 }
 
 page.tellTurn = function () { // in 1. after every turn, more or less.
-  messagePara = $('<p>')
+  var messagePara = $('<p>')
     .append(page.symbolSpan(game.state.isTurn))
     .append( $('<span>').text("'s turn") );
   $('.message')
@@ -531,11 +531,11 @@ page.clearPage = function () { // begin 3.
       game.prepNextMove();
     });
   if (game.state.o.color === 'green') {
-    greenPlays = 'o';
-    redPlays = 'x';
+    var greenPlays = 'o';
+    var redPlays = 'x';
   } else {
-    greenPlays = 'x';
-    redPlays = 'o';
+    var greenPlays = 'x';
+    var redPlays = 'o';
   }
   var giveAgentChoice = function(color, colorPlays) {
   $('.playerrow.'+color+' .player').on('click', function () {
