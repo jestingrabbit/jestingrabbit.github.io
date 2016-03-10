@@ -200,6 +200,7 @@ var makeGame = function (state) {
       }, game.state[symbol].agent.delay);
     } else {
       page.tellTurn(symbol);
+    }
   };
   game.victory = function (symbol) { // TODO enhance
     messagePara = $('<p>')
