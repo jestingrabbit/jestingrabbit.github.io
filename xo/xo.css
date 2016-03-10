@@ -1,0 +1,155 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+html {
+  padding:0;
+  margin:0;
+  border:0;
+}
+
+body {
+  padding:0;
+  margin:0;
+  border:0;
+}
+
+.playingArea{
+  width: 70%;
+  max-width: 700px;
+  overflow: hidden;
+  float: left;
+  display:inline-block;
+  padding: 0 0 0 100px
+}
+
+.board {
+  display:block;
+  position:relative;
+  /*background: black;*/
+  height: 600px;
+  width:600px
+  padding:0;
+  border:0;
+  margin: 20px auto;
+}
+
+.lines {
+  height: 552px;
+  width: 552px;
+  position:absolute;
+  top: 24px;
+  left: 24px;
+  background: slategray;
+  z-index: -1;
+}
+
+.cell {
+  display:inline-block;
+  height:176px;
+  width:176px;
+  padding:0;
+  border:0;
+  overflow: hidden;
+  margin:12px;
+  background: white;
+}
+
+.cell>p {
+  margin:0 0 24px 0;
+  padding:0;
+  text-align: center;
+  line-height: 152px;
+  font-size: 150px;
+}
+
+.symtext {
+  font-size: 60px;
+}
+
+.x {
+  font-family: sans-serif;
+  font-weight: bolder;
+}
+
+.o {
+  font-weight: bold;
+  font-family: Montserrat;
+}
+
+.red {
+  color: indianred;
+}
+
+.green {
+  color: darkolivegreen;
+}
+
+.unoccupied:hover {
+  background: radial-gradient(circle at 88px 88px, powderblue 0%, white 50%, white 100%);
+}
+
+.controls{
+  width:25%;
+  min-width: 200px;
+  background-color: gainsboro;
+  display: inline-block;
+  min-height: 100px;
+  float: right;
+  font-family: Montserrat;
+  font-size: 36px;
+  color: darkslateblue;
+  font-weight: bold;
+}
+
+.message {
+  width: 100%;
+  position: relative;
+}
+
+.message>p {
+  margin :0 0 10px 10px;
+}
+
+span.x {
+  display:inline-block;
+  position: relative;
+  margin-top: 3px;
+  margin-left: 4px;
+}
+
+.next {
+  text-align: center;
+}
+
+.next:hover {
+  background-color: darkslateblue;
+  color:white;
+}
+
+.playerrow {
+  height: 75px;
+  min-width: 200px;
+}
+
+.player {
+  display: inline-block;
+  height: 50px;
+  min-width: 150px;
+  text-align: left;
+  margin : 0 0 0 20px
+}
+.symbol {
+  display: inline-block;
+  height: 100px;
+  min-width : 50px;
+  text-align : center;
+}
+
+.playerrow.green .player:hover {
+  background-color: darkolivegreen;
+  color:white;
+}
+
+.playerrow.red .player:hover{
+  background-color: indianred;
+  color:white;
+}
