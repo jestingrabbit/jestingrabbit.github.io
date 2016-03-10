@@ -191,7 +191,7 @@ var makeGame = function (state) {
     game.state.changePlayer();
     var symbol = game.state.isTurn;
     if (game.state[symbol].agent){ // if it exists, do the agent turn automatically.
-      $cells.off();
+      page.$cells.off();
       move = game.state[symbol].agent.move(game.state);
       setTimeout( function () {
         page.$cells
@@ -374,8 +374,7 @@ agent = { // a place for bots who take in state, and spit out move
       }
       var avail = agent.utilities.availableSpaces(state);
       for (var i = 0; i < corners.length; i++) {
-        if ((otherMoves.indexOf(corners[i]) !== -1)
-        && (avail.indexOf(-corners[i]) !== -1)) {
+        if ((otherMoves.indexOf(corners[i]) !== -1) && (avail.indexOf(-corners[i]) !== -1)) {
           return ['spicy', -corners[i]]; //oposing corner.
         }
       }
