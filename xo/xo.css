@@ -75,14 +75,6 @@ body {
   font-family: Montserrat;
 }
 
-.red {
-  color: indianred;
-}
-
-.green {
-  color: darkolivegreen;
-}
-
 .unoccupied:hover {
   background: radial-gradient(circle at 88px 88px, powderblue 0%, white 50%, white 100%);
 }
@@ -144,12 +136,27 @@ span.x {
   text-align : center;
 }
 
-.playerrow.green .player:hover {
+.playerrow.green.active:hover {
   background-color: darkolivegreen;
   color:white;
 }
 
-.playerrow.red .player:hover{
+.playerrow.red.active:hover{
   background-color: indianred;
   color:white;
+}
+
+.red {
+  color: indianred;
+}
+
+.green {
+  color: darkolivegreen;
+}
+
+.red.white {
+  color: white;
+}
+.green.white {
+  color: white;
 }
