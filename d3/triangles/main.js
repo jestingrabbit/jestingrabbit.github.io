@@ -28,8 +28,8 @@ var svgCont;
 $(document).ready(function () {
   svgCont = d3.select('body')
     .append('svg')
-    .attr("width", 600)
-    .attr("height", 600);
+    .attr("width", "100vw")
+    .attr("height", "100vh");
 
   $('svg').on('click', function(event){
     console.log(event);

@@ -1,8 +1,8 @@
 var spaceCircles = [30, 70, 110];
 
 var svgSelection = d3.select('body').append('svg')
-  .attr("width", 200)
-  .attr("height", 200);
+  .attr("width", "100vw")
+  .attr("height", "100vh");
 
 
 var circles = svgSelection.selectAll('circle')

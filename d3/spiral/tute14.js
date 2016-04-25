@@ -15,8 +15,8 @@ var spiralFunction = d3.svg.line()
 
 var svgElement = d3.select('body')
   .append('svg')
-  .attr("height", 600)
-  .attr("width", 600);
+  .attr("width", "100vw")
+  .attr("height", "100vh");
 
 var lineGraph = svgElement.append("path")
   .attr("d", spiralFunction(spiralData))
