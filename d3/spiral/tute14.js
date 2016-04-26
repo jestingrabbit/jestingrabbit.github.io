@@ -8,15 +8,20 @@ for (var i = 0; i < 10000; i++) {
   });
 }
 
-var spiralFunction = d3.svg.line()
-  .x(function(d){ return 300+d.r*Math.cos(d.theta);})
-  .y(function(d){ return 300+d.r*Math.sin(d.theta);})
-  .interpolate("linear");
-
 var svgElement = d3.select('body')
   .append('svg')
   .attr("width", "100vw")
   .attr("height", "100vh");
+
+var height = svgElement.node().getBoundingClientRect().height;
+var width = svgElement.node().getBoundingClientRect().width;
+
+var spiralFunction = d3.svg.line()
+  .x(function(d){ return width/2 +d.r*Math.cos(d.theta);})
+  .y(function(d){ return height/2 +d.r*Math.sin(d.theta);})
+  .interpolate("linear");
+
+  console.log(svgElement.node().getBoundingClientRect());
 
 var lineGraph = svgElement.append("path")
   .attr("d", spiralFunction(spiralData))
