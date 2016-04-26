@@ -1,4 +1,4 @@
-rb = new rainbow.Colors(377);
+rb = new rainbow.Colors({fraction: 0.5});
 
 $(document).ready(function() {
   $('body').css({

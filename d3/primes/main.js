@@ -9,7 +9,7 @@ var data = {
     var data = _.map(_.range(max), function (num) {
       return {
         num: num,
-        PDs: []
+        primeDivisors: []
       }
     });
     for(var i = 2; i < data.length; i++){
@@ -21,7 +21,7 @@ var data = {
           data.primeDivisors[j].PDs.push([prime, 1]);
         }
       } else if (n.primDivisors.length === [1]) { // we're a prime power, like 2^5 or 3^34 or whatever.
-        
+
       }
 
     }

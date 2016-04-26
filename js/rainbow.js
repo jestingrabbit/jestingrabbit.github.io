@@ -61,30 +61,30 @@ var rainbow = {
     }
   },
 
-  brightness: function (brightness, verbose) {
-    if (brightness > 764){
+  brightness: function (bInt, verbose) {
+    if (bInt > 764){
       return [[255, 255, 255]];
-    } else if (brightness < 1) {
+    } else if (bInt < 1) {
       return [[0,0,0]];
     } else {
-      b = Math.round(brightness);
+      bInt = Math.round(brightness);
     }
 
-    if (b <= 255){
+    if (bInt <= 255){
       vertices = [
-        [b, 0, 0],
-        [0, b, 0],
-        [0, 0, b]
+        [bInt, 0, 0],
+        [0, bInt, 0],
+        [0, 0, bInt]
       ];
-    } else if (b >= 510) {
-      c = b - 510;
+    } else if (bInt >= 510) {
+      c = bInt - 510;
       vertices = [
         [c, 255, 255],
         [255, c, 255],
         [255, 255, c]
       ];
     } else {
-      c = b - 255;
+      c = bInt - 255;
       vertices = [
         [255, c, 0],
         [255, 0, c],
@@ -110,8 +110,8 @@ var rainbow = {
     }
   },
 
-  makeHalfStep: function (brightness, step) {
-    if (brightness < 383) {
+  makeHalfStep: function (bInt, step) {
+    if (bInt < 383) {
       return _.map(step, function (num) {
         return (num<0)? 0: num;
       });
@@ -127,8 +127,19 @@ var rainbow = {
          Math.floor(((i+1)/totalSize) * extraPoints + 0.5);
   },
 
-  perfect: function (brightness) {
-    var rb = rainbow.brightness(brightness, true);
+  perfect: function (brightnessObject) {
+
+    if (brightnessObject === undefined) {
+      bInt = Math.round(3*255/2);
+    } else if (brightnessObject.integer) {
+      bInt = brightnessObject.integer
+    } else if (brightnessObject.fraction) {
+      bInt = Math.round(brightnessObject.fraction * 3*255);
+    } else if (brightnessObject.percentage) {
+      bInt = Math.round(brightnessObject.percentage * 3*255/100);
+    }
+
+    var rb = rainbow.brightness(bInt, true);
     var intervalSizes = _.map(rb, function (io){
       return io.interval.length;
     });
@@ -146,7 +157,7 @@ var rainbow = {
     var i = 0;
 
     while (whichInterval < rb.length) {
-      var halfStep = rainbow.makeHalfStep(brightness, rb[whichInterval].step);
+      var halfStep = rainbow.makeHalfStep(bInt, rb[whichInterval].step);
       var thisInterval = rb[whichInterval].interval;
 
       for (j = 0; j < thisInterval.length; j++){
@@ -167,11 +178,11 @@ var rainbow = {
 
   Colors: function (brightness) {
     if (brightness === 'dark') {
-      this.brightness = 255;
+      this.brightness = {integer: 255};
     } else if (brightness === 'light') {
-      this.brightness = 510;
+      this.brightness = {integer: 510};
     } else {
-      this.brightness = Math.round(brightness);
+      this.brightness = brightness;
     }
 
     this.position = 0;
