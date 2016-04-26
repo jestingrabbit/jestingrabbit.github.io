@@ -66,10 +66,8 @@ var rainbow = {
       return [[255, 255, 255]];
     } else if (bInt < 1) {
       return [[0,0,0]];
-    } else {
-      bInt = Math.round(brightness);
     }
-
+    
     if (bInt <= 255){
       vertices = [
         [bInt, 0, 0],
@@ -128,7 +126,6 @@ var rainbow = {
   },
 
   perfect: function (brightnessObject) {
-
     if (brightnessObject === undefined) {
       bInt = Math.round(3*255/2);
     } else if (brightnessObject.integer) {
