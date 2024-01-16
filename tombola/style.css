@@ -1,0 +1,7 @@
+img {
+	max-height: 500px;
+}
+
+.warning {
+	border: 5px solid red;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tombola</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<img src="coin_flip.png" alt="Tom's game, Tom's rules">
+	<h2>The Utterly Mental Game </h2>
+	<p>A coin will be simulated, and tossed repeatedly. We record the number of times N tails occur in a row, and call that M.  The game ends when N+M heads occur in a row.</p>
+	
+	<h2>The Marginally Less Mental Game </h2>
+	<p>A coin will be simulated, and tossed repeatedly. We record the number of times N+M tails occur in a row, and call that M.  The game ends when N+M heads occur in a row.</p>
+	
+	<p class="warning">
+		<em>nb:</em> Because the nature of these games may require an inordinately large number of coin tosses to end, we choose not to record individual tosses in the browser. Even so, it is conceivable that this page could break your browser. You've been warned.
+	</p>
+	
+	<p>
+		<select name="degree of mental" id="version">
+			<option value="1">Utterly Mental</option>
+			<option value="2">Marginally Less Mental</option>
+		</select>	
+	</p>
+	<p>N= <input id="run_length" type="number" value="10" min="1" max="20"></p>
+	<p>M= <span id="extras_needed_for_run">0</span></p>	
+	<p>
+		<input id="finish" type="button" value="play the game">
+	</p>
+	<p>number of coin tosses = <span id="coin_tosses">0</span></p>
+	
+	<ul id="wins"></ul>
+	
+	<script src="script.js"></script>
+</body>
+</html>
